@@ -8,10 +8,7 @@ const vlaj = document.querySelector('.vlaj span')
 const speed = document.querySelector('.speed span')
 const names = document.querySelector('.names')
 const img = document.querySelector('.img img')
-button.addEventListener('click', () => {
-    getWeather(input.value)
-    input.value = ''
-})
+
 const url = 'https://api.openweathermap.org/data/2.5/weather?q='
 const api_key = '&appid=6511e14723ad8cb6f243ece1366c5deb'
 function getWeather(cityName = "Bishkek") {
@@ -25,6 +22,27 @@ function getWeather(cityName = "Bishkek") {
             speed.innerHTML = `${data.wind.speed}км/ч`
             names.innerHTML = `${data.weather[0].main
                 } `
+                button.addEventListener('click', () => {
+                    getWeather(input.value)
+                    input.value = ''
+                    if (input.value ===  data.name) {
+                        getWeather()
+                
+                        
+                
+                    }else {
+                        h3.innerHTML = 'Такое город не существует'
+                        numberPogoda.innerHTML = ``
+                        vlaj.innerHTML = ``
+                        speed.innerHTML = ``
+                        names.innerHTML = ``
+                        img.src = ''
+
+                    }
+                })
+
+
+            
             if (data.weather[0].main === 'Clear') {
                 img.src = './images/sunny.png'
                 names.innerHTML = `Жарко`
